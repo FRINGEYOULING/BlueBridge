@@ -92,9 +92,9 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
     LCD_Init();
-    LCD_Clear(Blue);
+    LCD_Clear(White);
     LCD_SetTextColor(Black);
-    LCD_SetBackColor(Blue);
+    LCD_SetBackColor(White);
   /* USER CODE END 2 */
 
   /* Infinite loop */
