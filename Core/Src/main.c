@@ -95,14 +95,17 @@ int main(void)
     LCD_Clear(White);
     LCD_SetTextColor(Black);
     LCD_SetBackColor(White);
+    led_off();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   char *str = "hello world";
+    HAL_TIM_Base_Start_IT(&htim2);
   while (1)
   {
       LCD_DisplayStringLine(Line2,str);
+
 //      test();
     /* USER CODE END WHILE */
 
