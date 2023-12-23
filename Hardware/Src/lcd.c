@@ -616,6 +616,7 @@ void LCD_WriteRAM_Prepare(void)
     __NOP();
 	GPIOB->BSRR |=  GPIO_PIN_9; 
 }
+
 /*******************************************************************************
 * Function Name  : LCD_WriteRAM
 * Description    : Writes to the LCD RAM.

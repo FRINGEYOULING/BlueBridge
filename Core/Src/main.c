@@ -26,6 +26,8 @@
 /* USER CODE BEGIN Includes */
 #include "test.h"
 #include "lcd.h"
+#include "Key.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,11 +102,34 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  char *str = "hello world";
+  char buff[50];
+  int numCount=0;
     HAL_TIM_Base_Start_IT(&htim2);
   while (1)
   {
-      LCD_DisplayStringLine(Line2,str);
+      keyScan();
+      if(KeyType.key2==ShortPress)
+      {
+          led(1);
+          numCount++;
+      }
+      if(KeyType.key2==LongPress)
+      {
+          led_off();
+          numCount++;
+      }
+      if(KeyType.key3==ShortPress)
+      {
+          numCount--;
+          led(4);
+      }
+      if(KeyType.key3==LongPress)
+      {
+          numCount--;
+          led_off();
+      }
+      sprintf(buff,"Num:%d ",numCount);
+      LCD_DisplayStringLine(Line2,buff);
 
 //      test();
     /* USER CODE END WHILE */
@@ -134,8 +159,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV3;
-  RCC_OscInitStruct.PLL.PLLN = 40;
+  RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV6;
+  RCC_OscInitStruct.PLL.PLLN = 85;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
